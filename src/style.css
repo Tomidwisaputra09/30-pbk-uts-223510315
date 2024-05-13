@@ -1,128 +1,322 @@
+:root {
+  --primary: #51008e;
+  --business: #3a82ee;
+  --personal: var(--primary);
+  --light: #eee;
+  --grey: #888;
+  --dark: #313154;
+  --danger: red;
+
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+
+  --business-glow: 0px 0px 4px rgba(58, 130, 238, 0.75);
+  --personal-glow: 0px 0px 4px rgba(234, 64, 164, 0.75);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "montserrat", sans-serif;
+}
+
+input:not([type="radio"]):not([type="checkbox"]),
+button {
+  appearance: none;
+  border: none;
+  outline: none;
+  background: none;
+  cursor: initial;
+}
+
 body {
-  background-color: rgb(48, 48, 48) !important;
+  background: var(--light);
+  color: var(--dark);
+}
+
+section {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5em;
+}
+h1 {
+  padding-bottom: 15px;
+  font-size: 40px;
+  font-family: poppins;
+  align-items: center;
+  color: rgb(19, 18, 21);
+}
+h2 {
+  font-size: 10px;
+}
+h3 {
+  color: var(--dark);
+  font-size: 1rem;
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+}
+
+h4 {
+  color: var(--grey);
+  font-size: 0.875rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.greeting .title {
+  display: flex;
+}
+
+.greeting .title input {
+  margin-left: 0.5rem;
+  flex: 1 1 0%;
+  min-width: 0;
+}
+
+.greeting .title,
+.greeting .title input {
+  color: var(--dark);
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.create-todo input[type="text"] {
+  display: block;
+  width: 100%;
+  font-size: 1.125rem;
+  padding: 1rem 1.5rem;
+  color: var(--dark);
+  background-color: #fff;
+  border-radius: 0.5rem;
+  box-shadow: var(--shadow);
+  margin-bottom: 1.5rem;
+}
+
+.create-todo .options {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.create-todo .options label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background-color: #fff;
+  border-radius: 0.5rem;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  display: none;
+}
+
+.bubble {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--business);
+  box-shadow: var(--business-glow);
 }
 
-.todo-app {
-  width: 800px;
-  height: 600px;
-  border-radius: 15px;
-  margin: 80px 0px;
+.bubble.personal {
+  border-color: var(--personal);
+  box-shadow: var(--personal-glow);
 }
 
-.input-section {
-  display: flex;
-  align-items: center;
-  margin-top: 20px;
-  height: 30px;
-}
-
-.input-section input[type="text"] {
-  flex-grow: 1;
-  padding: 16px;
-  border: none;
-  background-color: rgb(33, 33, 33);
-  color: #fff;
-  font-size: 16px;
-  border-radius: 30px;
-  transition: background-color 0.3s ease;
-  -webkit-box-shadow: 9px 21px 30px -19px rgba(0, 0, 0, 0.63);
-  -moz-box-shadow: 9px 21px 30px -19px rgba(0, 0, 0, 0.63);
-  box-shadow: 9px 21px 30px -19px rgba(0, 0, 0, 0.63);
-}
-
-.input-section input[type="text"]::placeholder {
-  color: #ddd;
-}
-
-.input-section input[type="text"]:focus {
-  outline: none;
-  background-color: #555;
-}
-
-.input-section button {
-  margin-left: 10px;
-  padding: 16px 23px;
-  border: none;
-  background-color: rgb(33, 33, 33);
-  color: #ffffff;
-  font-size: 16px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  -webkit-box-shadow: 9px 21px 30px -19px rgba(0, 0, 0, 0.63);
-  -moz-box-shadow: 9px 21px 30px -19px rgba(0, 0, 0, 0.63);
-  box-shadow: 9px 21px 30px -19px rgba(0, 0, 0, 0.63);
-}
-
-.input-section button:hover {
-  outline: none;
-  background-color: #555;
-}
-
-.todos {
-  width: 100%;
-  height: 500px;
-  margin-top: 50px;
-  padding: 10px 5px;
-  background-color: rgb(33, 33, 33);
-  border-radius: 30px;
-  -webkit-box-shadow: 9px 21px 30px -19px rgba(0, 0, 0, 0.63);
-  -moz-box-shadow: 9px 21px 30px -19px rgba(0, 0, 0, 0.63);
-  box-shadow: 9px 21px 30px -19px rgba(0, 0, 0, 0.63);
-}
-
-.todo-list {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-.todo-list li {
-  display: flex;
-  align-items: center;
-  padding: 7px 30px;
-  background-color: rgb(38 37 37);
-  border-radius: 80px;
-  margin-bottom: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-.todo-list li span {
-  margin-left: 10px;
-  color: #fff;
-}
-
-.delete-button {
-  padding: 3px;
-  border-radius: 80px;
-}
-
-.delete-button :hover {
-  outline: none;
-  background-color: #555;
-}
-
-.todo-text {
-  color: #fff !important;
-  margin-right: auto;
-  font-size: 16px !important;
-}
-
-.span-button {
-  margin-left: auto;
+.bubble::after {
+  content: "";
   display: block;
-  padding: 5px;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 18px !important;
+  opacity: 0;
+  width: 0px;
+  height: 0px;
+  background-color: var(--business);
+  box-shadow: var(--business-glow);
+  border-radius: 50%;
+  transition: 0.2s ease-in-out;
 }
 
-.span-button:hover {
-  background-color: rgb(52, 53, 53);
-  border-radius: 80px;
-  color: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+.bubble.personal::after {
+  background-color: var(--personal);
+  box-shadow: var(--personal-glow);
+}
+
+input:checked ~ .bubble::after {
+  width: 10px;
+  height: 10px;
+  opacity: 1;
+}
+
+.create-todo .options label div {
+  color: var(--dark);
+  font-size: 1.125rem;
+  margin-top: 1rem;
+}
+
+.create-todo input[type="submit"] {
+  display: block;
+  width: 100%;
+  font-size: 1.125rem;
+  padding: 1rem 1.5rem;
+  color: #fff;
+  background-color: var(--primary);
+  border-radius: 0.5rem;
+  box-shadow: var(--personal-glow);
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+
+.create-todo input[type="submit"]:hover {
+  opacity: 0.75;
+}
+
+.todo-list .list {
+  margin: 1rem 0;
+}
+
+.todo-list .todo-item {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: var(--shadow);
+  margin-bottom: 1rem;
+}
+
+.todo-item label {
+  display: block;
+  margin-right: 1rem;
+  cursor: pointer;
+}
+
+.todo-item .todo-content {
+  flex: 1 1 0%;
+}
+
+.todo-item .todo-content input {
+  color: var(--dark);
+  font-size: 1.125rem;
+}
+
+.todo-item .actions {
+  display: flex;
+  align-items: center;
+}
+
+.todo-item .actions button {
+  display: block;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+
+.todo-item .actions button:hover {
+  opacity: 0.75;
+}
+
+.todo-item .actions .edit {
+  margin-right: 0.5rem;
+  background-color: var(--primary);
+}
+
+.todo-item .actions .delete {
+  background-color: var(--danger);
+}
+
+.todo-item.done .todo-content input {
+  text-decoration: line-through;
+  color: var(--grey);
+}
+/* CSS untuk Header */
+header {
+  background-color: var(--primary);
+  padding: 1rem;
+}
+
+nav ul {
+  list-style-type: none;
+  display: flex;
+}
+
+nav ul li {
+  margin-right: 1rem;
+  color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+nav ul li:hover {
+  color: #f0f0f0;
+}
+
+/* CSS untuk Bagian Todos */
+.todo-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* CSS untuk Bagian Post */
+.post-section {
+  margin-top: 2rem;
+}
+
+.post-section h1 {
+  color: rgb(10, 9, 11);
+  text-align: center;
+}
+
+.post-section select {
+  margin: 1rem 0;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 2px solid var(--primary);
+  border-radius: 5px;
+  background-color: #fff;
+  color: var(--dark);
+  cursor: pointer;
+}
+
+.post-section select:hover {
+  background-color: var(--primary);
+  color: #fff;
+}
+
+.post-section option {
+  background-color: #fff;
+  color: var(--dark);
+}
+
+.post-section option:hover {
+  background-color: var(--primary);
+  color: #fff;
+}
+
+.post-section div {
+  background-color: var(--light);
+  padding: 1rem;
+  margin-top: 1rem;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.post-section div h3 {
+  color: rgba(115, 0, 192, 0.966);
+}
+
+.post-section div p {
+  color: var(--dark);
 }
