@@ -6,12 +6,15 @@
           <li @click="showTodos">To Do List</li>
           <li @click="showPosts">Post</li>
           <li @click="showUsers">User</li>
+          <li @click="showAlbums">Albums</li>
         </ul>
       </nav>
     </header>
     <Todos v-if="showingTodos" />
     <Posts v-else-if="showingPosts" />
     <User v-else-if="showingUsers" />
+    <Albums v-else-if="showingAlbums" @navigateToPhotos="navigateToPhotos" />
+    <Photos v-else-if="showingPhotos" :albumId="selectedAlbumId" />
   </main>
 </template>
 
@@ -20,30 +23,47 @@ import { ref } from "vue";
 import Todos from "./components/Todos.vue";
 import Posts from "./components/Posts.vue";
 import User from "./components/User.vue";
+import Albums from "./components/Albums.vue";
+import Photos from "./components/Photos.vue";
 
-const showingTodos = ref(true);
+const showingTodos = ref(false);
 const showingPosts = ref(false);
 const showingUsers = ref(false);
+const showingAlbums = ref(true);
+const showingPhotos = ref(false);
+const selectedAlbumId = ref(null);
 
 const showTodos = () => {
+  resetStates();
   showingTodos.value = true;
-  showingPosts.value = false;
-  showingUsers.value = false;
 };
 
 const showPosts = () => {
-  showingTodos.value = false;
+  resetStates();
   showingPosts.value = true;
-  showingUsers.value = false;
 };
 
 const showUsers = () => {
-  showingTodos.value = false;
-  showingPosts.value = false;
+  resetStates();
   showingUsers.value = true;
 };
-</script>
 
-<style scoped>
-/* Your existing CSS for App.vue */
-</style>
+const showAlbums = () => {
+  resetStates();
+  showingAlbums.value = true;
+};
+
+const navigateToPhotos = (albumId) => {
+  selectedAlbumId.value = albumId;
+  resetStates();
+  showingPhotos.value = true;
+};
+
+const resetStates = () => {
+  showingTodos.value = false;
+  showingPosts.value = false;
+  showingUsers.value = false;
+  showingAlbums.value = false;
+  showingPhotos.value = false;
+};
+</script>
